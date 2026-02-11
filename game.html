@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React_Game</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <style>
+           body{
+            margin:0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:#eef;
+            font-family:Arial;
+           }
+           .game{
+            position:relative;
+            width: 400px;
+            height:500px;
+            border: 1px solid black;
+            background:#fff;
+            overflow: hidden;
+           }
+          .box{
+            position:absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            cursor: pointer;   
+           }
+           .score{
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 20px;
+            font-weight:bold;
+           }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        let score =0
+        
+        function App(){
+            function handleClick(e){
+                 score++;
+                
+                document.getElementById("score").innerText = "Score: "+ score;
+                const box = e.target;
+                box.style.left=Math.random()*(400 - 50) + "px";
+                box.style.top=Math.random()*(500 - 50) +"px";
+            }
+            return React.createElement("div",{ Class: "game"},
+                React.createElement("div",{ id:"score",className:"score"},"Score:0"),
+                 React.createElement("div", { className: "box",  onClick: handleClick, style:{ left: "100px" , top: "100px"}})
+            );
+
+        }
+         ReactDOM.render(
+            React.createElement(App),
+            document.querySelector("#root"),
+         );
+    </script>
+</body>
+</html>
